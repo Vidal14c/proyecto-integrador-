@@ -1,84 +1,65 @@
-# proyecto-integrador-
-Vocare - Asistente de Voz para Medicación
+Vocare 💊🗣️
 
-Proyecto Integrador | Tecnologías Emergentes en Interfaces de Usuario - ISPADE
+Asistente Médico Inteligente por Voz (Voice-First SPA)
+Proyecto Integrador | Tecnologías Emergentes en Interfaces de Usuario
+Estudiante: Arturo Contreras | Institución: ISPADE
 
-Descripción General
+🌟 Descripción del Proyecto
 
-"Vocare" es una aplicación web y móvil de un Asistente de Voz (Voice User Interface - VUI) diseñada específicamente para adultos mayores. El sistema permite gestionar los horarios de medicación mediante comandos de voz naturales, mitigando las barreras de accesibilidad visual y motriz (letras pequeñas y teclados complejos) comunes en este grupo demográfico.
+Vocare es una aplicación web interactiva desarrollada bajo el paradigma Voice-First (Primero la voz), orientada a resolver las barreras de accesibilidad digital (visuales, motrices y cognitivas) a las que se enfrentan los adultos mayores al gestionar sus tratamientos médicos.
 
-Tecnologías Utilizadas
+Las interfaces médicas tradicionales dependen de textos pequeños, calendarios y menús complejos. Vocare elimina estas barreras sustituyendo los menús por una interfaz basada en reconocimiento de voz bidireccional, un diseño de alto contraste (Amarillo/Negro) y botones sobredimensionados.
 
-Frontend: HTML5, CSS3, JavaScript (Vanilla).
+🚀 Tecnologías Emergentes Implementadas
 
-Estilos: Tailwind CSS (vía CDN) para un diseño de alto contraste y componentes accesibles.
+Web Speech API (VUI):
 
-Íconos: FontAwesome.
+Speech-to-Text (STT): Captura y transcribe la voz natural del usuario mediante SpeechRecognition.
 
-Tecnología Emergente (VUI):
+Text-to-Speech (TTS): Genera respuestas vocales humanizadas y pausadas para guiar al adulto mayor utilizando speechSynthesis.
 
-Web Speech API (SpeechRecognition): Para convertir la voz del usuario en texto (Speech-to-Text).
+Web Audio API: Generación de un oscilador de audio de 800Hz que emite un tono acústico (Bip) de confirmación antes de iniciar la escucha, resolviendo problemas de feedback sensorial detectados en pruebas UX.
 
-Web Speech API (SpeechSynthesis): Para generar las respuestas habladas del sistema (Text-to-Speech).
+Tailwind CSS: Maquetación responsiva (Mobile-First y soporte estricto de F12 para emulación móvil) y de muy alto contraste para superar problemas de presbicia y cataratas.
 
-Requisitos de Ejecución
+🛠️ Arquitectura y Tecnologías del Sistema
 
-Este prototipo ha sido diseñado para ejecutarse completamente en el lado del cliente (Navegador) sin requerir instalación de servidores complejos.
+Frontend: Single Page Application (SPA) en Vanilla JavaScript (ES6+), HTML5 semántico y Tailwind CSS.
 
-Navegador compatible: Google Chrome, Microsoft Edge, o Safari (Actualizados). Nota: Firefox no soporta nativamente Web Speech API sin configuraciones adicionales.
+Backend (Arquitectura proyectada/servidor local): Servidor API REST desarrollado en Node.js con Express.
 
-Hardware: Micrófono funcional y altavoces/auriculares.
+Base de Datos: Motor relacional MySQL para el almacenamiento seguro de recetas, diagnósticos y perfiles de pacientes.
 
-Conexión a internet: Requerida, ya que las APIs de reconocimiento de voz del navegador a menudo utilizan servicios en la nube (ej. Google Cloud) por detrás.
+📱 Demostración y Despliegue
 
-Instalación y Uso
+Enlace a la Aplicación (Netlify): https://proyectointegradorac.netlify.app/
 
-Clona o descarga este repositorio.
+Prototipo local en código único: Ver archivo prototipo.html en este repositorio.
 
-Abre el archivo vocare_app.html directamente en tu navegador (doble clic).
+⚙️ Instrucciones de Instalación y Ejecución Local
 
-El navegador te pedirá permisos para usar el micrófono. Haz clic en "Permitir".
+Puedes probar el prototipo de dos formas:
 
-Toca el botón gigante del micrófono en el centro de la pantalla.
+Opción A: Ejecución Directa del Prototipo
 
-Escucha el "bip" e intenta decir: "¿Qué pastilla me toca?".
+Clona el repositorio o descarga el archivo prototipo.html.
 
-Estructura del Código
+Ábrelo directamente en tu navegador web (Google Chrome o Microsoft Edge recomendado).
 
-El proyecto sigue el principio de "Single-File Application" (para esta entrega de prototipo), dividiendo el archivo vocare_app.html en tres capas:
+Concede los permisos del micrófono cuando el navegador lo solicite.
 
-<head> y <style>: Importación de librerías (Tailwind) y animaciones personalizadas CSS (@keyframes pulse-ring).
+Opción B: Ejecución con Servidor Local (VS Code)
 
-<body> (UI):
+Abre el proyecto en Visual Studio Code.
 
-view-home: Interfaz principal con el botón del micrófono y estado del texto.
+Instala la extensión Live Server.
 
-view-history: Lista visual de medicamentos basada en heurísticas de usabilidad.
+Haz clic derecho sobre el archivo HTML y selecciona "Open with Live Server".
 
-delete-modal: Capa de prevención de errores (Heurística).
+📋 Funcionalidades Clave
 
-<script> (Lógica VUI):
+Panel Clínico Interactivo: Permite al cuidador registrar el nombre del paciente, su diagnóstico y añadir medicamentos de forma múltiple.
 
-Gestión de eventos de reconocimiento de voz (recognition.onresult).
+Asistente de IA Local (Reglas NLP): Botón inteligente que sugiere medicamentos automáticamente según la enfermedad ingresada (ej. Diabetes -> Metformina).
 
-Función processVoiceCommand(text): Actúa como el procesador de lenguaje natural (NLP) simulado.
-
-Función speak(text): Invoca la síntesis de voz.
-
-Consideraciones de Accesibilidad (UX Implementada)
-
-Basado en las evaluaciones heurísticas realizadas durante la asignatura:
-
-Feedback visual y sonoro: El micrófono cambia de color (rojo pulsante) y emite un "bip" para indicar que está escuchando.
-
-Botones XXL: Diseñados para usuarios con temblores o presbicia.
-
-Altos contrastes: Uso de textos oscuros sobre fondos blancos y amarillos claros (Cumplimiento WCAG AA).
-
-Recuperación de errores: Modal de advertencia antes de borrar un medicamento.
-
-Limitaciones Conocidas
-
-El procesamiento de lenguaje natural (NLP) en este prototipo está simulado con condicionales simples (if/else). En un entorno de producción, requeriría integración con servicios como Dialogflow o AWS Lex.
-
-La lista de medicamentos está estática en el frontend. La versión final conectaría con Firebase Firestore.
+Feedback Multimodal: El sistema responde mediante voz sintetizada y simultáneamente escribe la respuesta en pantalla con tipografía gigante.
